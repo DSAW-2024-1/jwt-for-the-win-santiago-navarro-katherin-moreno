@@ -5,6 +5,10 @@ const jwt = require("jsonwebtoken");
 const authenticateToken = require('../authenticateToken');
 
 
+router.get("/", authenticateToken, (req, res) => {
+    res.send("Working from login");
+  });
+
 const users = [
     { email: 'admin@admin.com', password: 'admin' }
 ];
@@ -13,9 +17,7 @@ router.post('/', (req, res) => {
     const { email, password } = req.body;
 
    
-    router.get("/", authenticateToken, (req, res) => {
-        res.send("Working from login");
-      });
+    
     
     const user = users.find(user => user.email === email);
 
@@ -42,4 +44,3 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
-
